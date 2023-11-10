@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "594732209663",
+    "project_id": "login-6e862",
+    "storage_bucket": "login-6e862.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594732209663:android:9a5608aafbaafefc88c3ca",
+        "android_client_info": {
+          "package_name": "com.example.moviefilmapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD30hYFYo_JUYz8MgpfYSpEay6WG7fPP-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594732209663:android:d9c47c84082166e888c3ca",
+        "android_client_info": {
+          "package_name": "com.example.netflix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD30hYFYo_JUYz8MgpfYSpEay6WG7fPP-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
