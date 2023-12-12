@@ -7,7 +7,7 @@
     android:background="@color/main_color"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".Activities.RegisterActivity">
+    tools:context=".Activities.ForgotPassActivity">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -15,10 +15,10 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,82 +31,49 @@
                 android:layout_width="49dp"
                 android:layout_height="47dp"
                 android:background="@color/main_color"
-                app:srcCompat="@drawable/back"
-                android:contentDescription="back"/>
+                android:contentDescription="back"
+                app:srcCompat="@drawable/back" />
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="240dp"
+                android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="80dp"
-                android:text="Register"
+                android:text="Forgot Pass"
                 android:textColor="@color/white"
-                android:textSize="50dp"
+                android:textSize="40dp"
                 android:textStyle="bold" />
 
-
             <EditText
-                android:id="@+id/editTextEmail"
+                android:id="@+id/editTextForgot"
                 android:layout_width="350dp"
                 android:layout_height="51dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="128dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/edittext_background"
                 android:ems="10"
-                android:hint="Email"
+                android:hint="Input your Email"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
 
-            <EditText
-                android:id="@+id/editTextPassword"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/edittext_background"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
-
-            <EditText
-                android:id="@+id/editTextConFirm"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/edittext_background"
-                android:ems="10"
-                android:hint="Confirm Password"
-                android:inputType="textPassword"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
-
-
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/registerBtn"
+                android:id="@+id/confirm2Btn"
                 style="@android:style/Widget.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="64dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/orange_button_background"
-                android:text="Register"
+                android:text="Confirm"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
 
         </LinearLayout>
     </ScrollView>
