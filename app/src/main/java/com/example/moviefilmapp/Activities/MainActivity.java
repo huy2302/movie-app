@@ -2,86 +2,106 @@ package com.example.moviefilmapp.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.moviefilmapp.Adapters.SliderAdapter;
+import com.example.moviefilmapp.Adapters.ViewPagerAdapter;
 import com.example.moviefilmapp.Domain.SliderItem;
 import com.example.moviefilmapp.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private ViewPager2 viewPager2;
-    private Handler slideHandler = new Handler();
+    private ViewPager mViewPager;
+    private BottomNavigationView mBottomNavigationView;
+    private int counter = 0;
+
+    @Override
+    public void onBackPressed() {
+        counter++;
+        if (counter == 2) {
+            super.onBackPressed();
+            finishAffinity();
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        initView();
-        banners();
-    }
 
-    private void banners() {
-        List<SliderItem> sliderItems = new ArrayList<>();
-        sliderItems.add(new SliderItem(R.drawable.wide));
-        sliderItems.add(new SliderItem(R.drawable.wide1));
-        sliderItems.add(new SliderItem(R.drawable.wide3));
+        mViewPager = findViewById(R.id.view_pager_nav);
+        mBottomNavigationView = findViewById(R.id.bottom_nav);
 
-        viewPager2.setAdapter(new SliderAdapter(sliderItems, viewPager2));
-        viewPager2.setClipToPadding(false);
-        viewPager2.setClipChildren(false);
-        viewPager2.setOffscreenPageLimit(3);
-        viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        mViewPager.setAdapter(adapter);
+        mViewPager.setOffscreenPageLimit(1);
 
-        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
-        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r=1-Math.abs(position);
-                page.setScaleY(0.85f+r*0.15f);
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
             }
-        });
-        viewPager2.setPageTransformer(compositePageTransformer);
-        viewPager2.setCurrentItem(1);
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+
             @Override
             public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                slideHandler.removeCallbacks(sliderRunnable);
+                switch (position){
+                    case 0:
+                        mBottomNavigationView.getMenu().findItem(R.id.menu_tab_1).setChecked(true);
+                        break;
+
+                    case 1:
+                        mBottomNavigationView.getMenu().findItem(R.id.menu_tab_2).setChecked(true);
+                        break;
+
+                    case 2:
+//                        mBottomNavigationView.getMenu().findItem(R.id.menu_tab_3).setChecked(true);
+//                        break;
+//
+//                    case 3:
+                        mBottomNavigationView.getMenu().findItem(R.id.menu_tab_4).setChecked(true);
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
-    }
+        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
 
-    private Runnable sliderRunnable = new Runnable() {
-        @Override
-        public void run() {
-            viewPager2.setCurrentItem(viewPager2.getCurrentItem()+1);
-        }
-    };
+                if (itemId == R.id.menu_tab_1) {
+                    mViewPager.setCurrentItem(0);
+                } else if (itemId == R.id.menu_tab_2) {
+                    mViewPager.setCurrentItem(1);
+                }
+//                else if (itemId == R.id.menu_tab_3) {
+//                    mViewPager.setCurrentItem(2);
+//                }
+                else if (itemId == R.id.menu_tab_4) {
+                    mViewPager.setCurrentItem(2);
+                }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        slideHandler.removeCallbacks(sliderRunnable);
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        slideHandler.postDelayed(sliderRunnable,2000);
-    }
-
-    private void initView() {
-        viewPager2 = findViewById(R.id.view_pager);
+                return true;
+            }
+        });
     }
 }

@@ -9,7 +9,16 @@ import android.widget.Button;
 import com.example.moviefilmapp.R;
 
 public class IntroActivity extends AppCompatActivity {
+    private int counter = 0;
 
+    @Override
+    public void onBackPressed() {
+        counter++;
+        if (counter == 1) {
+            super.onBackPressed();
+            finishAffinity();
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
