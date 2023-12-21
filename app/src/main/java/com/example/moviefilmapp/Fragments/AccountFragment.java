@@ -54,6 +54,7 @@ public class AccountFragment extends Fragment {
         if (currentUser != null){
             String userEmail = currentUser.getEmail();
             textViewEmail.setText(userEmail);
+
         }
 
         Button logoutButton =view.findViewById(R.id.logoutButton);
