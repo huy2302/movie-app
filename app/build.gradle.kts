@@ -49,6 +49,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
     implementation ("com.google.code.gson:gson:2.8.9")
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
 
 
 }
